@@ -64,3 +64,4 @@ C:\Users\i.talavyria\Desktop\project\WMS_Services\WMSServices\PresentationLayer\
 C:\Users\i.talavyria\Desktop\project\WMS_Services\WMSServices\PresentationLayer\obj\Release\net5.0\PresentationLayer.xml
 C:\Users\i.talavyria\Desktop\project\WMS_Services\WMSServices\PresentationLayer\obj\Release\net5.0\PresentationLayer.pdb
 C:\Users\i.talavyria\Desktop\project\WMS_Services\WMSServices\PresentationLayer\obj\Release\net5.0\PresentationLayer.genruntimeconfig.cache
+C:\Users\i.talavyria\Desktop\project\WMS_Services\WMSServices\PresentationLayer\bin\Release\net5.0\BusinessLogicLayer.xml

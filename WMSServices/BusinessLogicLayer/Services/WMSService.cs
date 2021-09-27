@@ -1,10 +1,9 @@
 ﻿using AutoMapper;
-using BusinessLogicLayer.Models;
+using BusinessLogicLayer.Models.Response;
 using BusinessLogicLayer.Services.Interfaces;
-using DataAccessLayer.Entities.AvroraWMS;
+using DataAccessLayer.Entities;
 using DataAccessLayer.Repositories.Interfaces;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace BusinessLogicLayer.Services
@@ -20,13 +19,35 @@ namespace BusinessLogicLayer.Services
             _mapper = mapper;
         }
 
-        public async Task<List<CrTempqaModel>> get(string livrea, DateTime? dateTime)
+        public async Task<CrTempqaResponseModel> get(string livrea, DateTime? dateTime)
         {
-            List<CrTempqa> crTempqas = await _crTempqaRepository.getTemp(livrea, dateTime);
+            CrTempqaResponse crTempqa = new CrTempqaResponse();
 
-            List<CrTempqaModel> crTempqaModels = _mapper.Map<List<CrTempqa>, List<CrTempqaModel>>(crTempqas);
+            if (livrea == null)
+            {
+                crTempqa.resultDescription.Status = 1;
+                crTempqa.resultDescription.Message = "Livrea = null";         
+            }
+            else
+            {
+                if (dateTime == null)
+                {
+                    crTempqa = await _crTempqaRepository.getTemp(livrea);
+                }
+                else
+                {
+                    crTempqa = await _crTempqaRepository.getTempForPeriod(livrea, dateTime);
+                }
+            }
 
-            return crTempqaModels;
+            CrTempqaResponseModel crTempqaResponseModel = _mapper.Map<CrTempqaResponse,CrTempqaResponseModel>(crTempqa);
+
+            if (crTempqaResponseModel.resultDescription.Message == "successfully")
+            {
+                crTempqaResponseModel.resultDescription.Status = 0;
+            }
+
+            return crTempqaResponseModel;
         }
     }    
 }

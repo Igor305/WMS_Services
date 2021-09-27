@@ -1,12 +1,11 @@
-﻿using BusinessLogicLayer.Models;
+﻿using BusinessLogicLayer.Models.Response;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace BusinessLogicLayer.Services.Interfaces
 {
     public interface IWMSService
     {
-        public Task<List<CrTempqaModel>> get(string livrea, DateTime? dateTime);
+        public Task<CrTempqaResponseModel> get(string livrea, DateTime? dateTime);
     }
 }

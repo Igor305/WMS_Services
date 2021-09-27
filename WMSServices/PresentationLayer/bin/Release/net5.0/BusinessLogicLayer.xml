@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BusinessLogicLayer</name>
+    </assembly>
+    <members>
+        <member name="P:BusinessLogicLayer.Models.CrTempqaModel.Nlotpr">
+            <summary>
+            ert
+            </summary>
+        </member>
+        <member name="T:BusinessLogicLayer.Models.ResultDescription">
+            <summary>
+            HELP
+            </summary>
+        </member>
+        <member name="P:BusinessLogicLayer.Models.ResultDescription.Message">
+            <summary>
+            The name of the product
+            </summary>
+            <example>Men's basketball shoes</example>
+        </member>
+    </members>
+</doc>

@@ -51,10 +51,12 @@ namespace PresentationLayer
                 });
 
                 // Set the comments path for the Swagger JSON and UI.
-
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                var xmlPath2 = Path.Combine(AppContext.BaseDirectory, @"BusinessLogicLayer.xml");
+
                 c.IncludeXmlComments(xmlPath);
+                c.IncludeXmlComments(xmlPath2);
             });
 
             MapperConfiguration mapperconfig = new MapperConfiguration(cfg =>

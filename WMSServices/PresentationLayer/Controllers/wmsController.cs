@@ -1,8 +1,7 @@
-﻿using BusinessLogicLayer.Models;
+﻿using BusinessLogicLayer.Models.Response;
 using BusinessLogicLayer.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace PresentationLayer.Controllers
@@ -11,20 +10,31 @@ namespace PresentationLayer.Controllers
     [ApiController]
     public class wmsController : ControllerBase
     {
-        private readonly IWMSService _WMSService;
+        private IWMSService _WMSService;
 
         public wmsController(IWMSService wMSService)
         {
             _WMSService = wMSService;
         }
 
+        /// <summary>
+        /// WMSss
+        /// </summary>
+        /// <param name="livrea"></param>
+        /// <param name="dateTime"></param>
+        /// <remarks>
+        /// Sample request:
+        ///
+        ///     https://localhost:44351/api/wms?livrea=609
+        ///
+        /// </remarks>
         [HttpGet]
-        public async Task<List<CrTempqaModel>> getTempqaModels([FromQuery]string livrea, [FromQuery]DateTime? dateTime)
+        public async Task<CrTempqaResponseModel> getTempqaModels([FromQuery]string livrea, [FromQuery]DateTime? dateTime)
         {
 
-            List<CrTempqaModel> crTempqaModels = await _WMSService.get(livrea, dateTime);
+            CrTempqaResponseModel crTempqaResponseModel = await _WMSService.get(livrea, dateTime);
 
-            return crTempqaModels;
+            return crTempqaResponseModel;
         }
     }
 }

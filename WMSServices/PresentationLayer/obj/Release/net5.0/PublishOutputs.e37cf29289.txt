@@ -79,5 +79,6 @@ C:\Users\i.talavyria\Desktop\project\WMS_Services\WMSServices\PresentationLayer\
 C:\Users\i.talavyria\Desktop\project\WMS_Services\WMSServices\PresentationLayer\obj\Release\net5.0\PubTmp\Out\BusinessLogicLayer.dll
 C:\Users\i.talavyria\Desktop\project\WMS_Services\WMSServices\PresentationLayer\obj\Release\net5.0\PubTmp\Out\DataAccessLayer.dll
 C:\Users\i.talavyria\Desktop\project\WMS_Services\WMSServices\PresentationLayer\obj\Release\net5.0\PubTmp\Out\BusinessLogicLayer.pdb
+C:\Users\i.talavyria\Desktop\project\WMS_Services\WMSServices\PresentationLayer\obj\Release\net5.0\PubTmp\Out\BusinessLogicLayer.xml
 C:\Users\i.talavyria\Desktop\project\WMS_Services\WMSServices\PresentationLayer\obj\Release\net5.0\PubTmp\Out\DataAccessLayer.pdb
 C:\Users\i.talavyria\Desktop\project\WMS_Services\WMSServices\PresentationLayer\obj\Release\net5.0\PubTmp\Out\PresentationLayer.xml

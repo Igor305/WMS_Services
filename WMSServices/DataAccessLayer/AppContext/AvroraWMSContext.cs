@@ -19,6 +19,7 @@ namespace DataAccessLayer.AppContext
         public virtual DbSet<Client> Clients { get; set; }
         public virtual DbSet<ConversionCoefficient> ConversionCoefficients { get; set; }
         public virtual DbSet<CrTempqa> CrTempqas { get; set; }
+        public virtual DbSet<CrTemp> CrTemps { get; set; }
         public virtual DbSet<Icsarticle> Icsarticles { get; set; }
         public virtual DbSet<IcsarticleOnline> IcsarticleOnlines { get; set; }
         public virtual DbSet<Icsdeol> Icsdeols { get; set; }
@@ -96,7 +97,7 @@ namespace DataAccessLayer.AppContext
                     .IsUnicode(false)
                     .HasColumnName("ADRUMS");
 
-                entity.Property(e => e.Arprom)
+               entity.Property(e => e.Arprom)
                     .IsRequired()
                     .HasMaxLength(2)
                     .IsUnicode(false)

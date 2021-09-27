@@ -65,3 +65,4 @@ C:\Users\i.talavyria\Desktop\project\WMS_Services\WMSServices\PresentationLayer\
 C:\Users\i.talavyria\Desktop\project\WMS_Services\WMSServices\PresentationLayer\obj\Debug\net5.0\PresentationLayer.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\i.talavyria\Desktop\project\WMS_Services\WMSServices\PresentationLayer\bin\Debug\net5.0\PresentationLayer.xml
 C:\Users\i.talavyria\Desktop\project\WMS_Services\WMSServices\PresentationLayer\obj\Debug\net5.0\PresentationLayer.xml
+C:\Users\i.talavyria\Desktop\project\WMS_Services\WMSServices\PresentationLayer\bin\Debug\net5.0\BusinessLogicLayer.xml

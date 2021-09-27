@@ -1,4 +1,5 @@
 ﻿using DataAccessLayer.AppContext;
+using DataAccessLayer.Entities;
 using DataAccessLayer.Entities.AvroraWMS;
 using DataAccessLayer.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -18,25 +19,90 @@ namespace DataAccessLayer.Repositories.EFRepositories
             _avroraWMSContext = avroraWMSContext;
         }
 
-        public async Task<List<CrTempqa>> getTemp(string livrea, DateTime? dateTime)
+        public async Task<CrTempqaResponse> getTemp(string livrea)
         {
-            List<CrTempqa> crTempqaRepositories = await _avroraWMSContext.CrTempqas.Where(x => x.Livrea == livrea && x.Datcre.Value.Date == dateTime.Value.Date).ToListAsync();
+            CrTempqaResponse crTempqaResponse = new CrTempqaResponse();
 
-            blockUsscc(livrea, dateTime);
+            crTempqaResponse.resultDescription.Status = 2;
+            crTempqaResponse.resultDescription.Message = "successfully";
 
-            return crTempqaRepositories;
-        }
-
-        private void blockUsscc(string livrea, DateTime? dateTime)
-        {
             try
             {
-                var r = _avroraWMSContext.CrTempqas.FromSqlRaw($"update [WMS_ORACLE]..[STK511TRN].[CR_TEMPQA] set BLOCK = '0' Where (CAST(DATCRE AS date) = '{dateTime.Value.Year}-{dateTime.Value.Month}-{dateTime.Value.Day}') AND USSCC In(SELECT USSCC FROM CR_TEMPQA Where LIVREA = {livrea})").ToList();
+                crTempqaResponse.crTempqaModels = await _avroraWMSContext.CrTempqas.Where(x => x.Livrea == livrea).ToListAsync();
+
+                string message = blockUsscc(livrea);
+
+                if (message != "successfully")
+                {
+                    crTempqaResponse.resultDescription.Status = 3;               
+                    throw new Exception(message);
+                }
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                crTempqaResponse.resultDescription.Message = e.Message;
+                return crTempqaResponse;
             }
+            return crTempqaResponse;
+        }
+
+        private string blockUsscc(string livrea)
+        {
+            string message = "successfully";
+
+            try
+            {
+                List<CrTemp> crTemps = _avroraWMSContext.CrTemps.FromSqlRaw($"SELECT * FROM[WMS_ORACLE]..[STK511TRN].[CR_TEMPQA] update [WMS_ORACLE]..[STK511TRN].[CR_TEMPQA] set BLOCK = '0' Where USSCC In(SELECT USSCC FROM CR_TEMPQA Where LIVREA = {livrea})").ToList();
+            }
+            catch (Exception e)
+            {
+                message = e.Message;
+            }
+
+            return message;
+        }
+
+        public async Task<CrTempqaResponse> getTempForPeriod(string livrea, DateTime? dateTime)
+        {
+            CrTempqaResponse crTempqaResponse = new CrTempqaResponse();
+
+            crTempqaResponse.resultDescription.Status = 2;
+            crTempqaResponse.resultDescription.Message = "successfully";
+
+            try
+            {
+                crTempqaResponse.crTempqaModels = await _avroraWMSContext.CrTempqas.Where(x => x.Livrea == livrea && x.Datcre.Value.Date == dateTime.Value.Date).ToListAsync();
+
+                string message = blockUssccForPeriod(livrea, dateTime);
+
+                if (message != "successfully")
+                {
+                    crTempqaResponse.resultDescription.Status = 3;
+                    throw new Exception(message);
+                }
+            }
+            catch (Exception e)
+            {
+                crTempqaResponse.resultDescription.Message = e.Message;
+                return crTempqaResponse;
+            }
+            return crTempqaResponse;
+        }
+
+        private string blockUssccForPeriod(string livrea, DateTime? dateTime)
+        {
+            string message = "successfully";
+
+            try
+            {
+                List<CrTemp> crTemps = _avroraWMSContext.CrTemps.FromSqlRaw($"SELECT * FROM[WMS_ORACLE]..[STK511TRN].[CR_TEMPQA] update [WMS_ORACLE]..[STK511TRN].[CR_TEMPQA] set BLOCK = '0' Where (CAST(DATCRE AS date) = '{dateTime.Value.Year}-{dateTime.Value.Month}-{dateTime.Value.Day}') AND USSCC In(SELECT USSCC FROM CR_TEMPQA Where LIVREA = {livrea})").ToList();
+            }
+            catch (Exception e)
+            {
+                message = e.Message;
+            }
+
+            return message;
         }
     }
 }

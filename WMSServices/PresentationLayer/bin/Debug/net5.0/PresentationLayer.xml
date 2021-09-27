@@ -4,5 +4,18 @@
         <name>PresentationLayer</name>
     </assembly>
     <members>
+        <member name="M:PresentationLayer.Controllers.wmsController.getTempqaModels(System.String,System.Nullable{System.DateTime})">
+             <summary>
+             WMSss
+             </summary>
+             <param name="livrea"></param>
+             <param name="dateTime"></param>
+             <remarks>
+             Sample request:
+            
+                 https://localhost:44351/api/wms?livrea=609
+            
+             </remarks>
+        </member>
     </members>
 </doc>
