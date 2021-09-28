@@ -4,16 +4,17 @@
         <name>PresentationLayer</name>
     </assembly>
     <members>
-        <member name="M:PresentationLayer.Controllers.lotController.getTempqaModels(System.String,System.Nullable{System.DateTime})">
+        <member name="M:PresentationLayer.Controllers.lotController.getTempqaModels(System.String,System.String,System.Nullable{System.DateTime})">
              <summary>
              Перелік товарів за лотом
              </summary>
+             <param name="key">Ключ</param>
              <param name="livrea">Код одержувача лоту</param>
              <param name="dateTime">Дата створення запису</param>
              <remarks>
              Sample request:
             
-                 http://qawms.avrora.lan/api/lot?livrea=609
+                 http://qawms.avrora.lan/api/lot?key=exampleKey&amp;livrea=609
             
              </remarks>
         </member>
