@@ -4,35 +4,18 @@
         <name>PresentationLayer</name>
     </assembly>
     <members>
-        <member name="T:PresentationLayer.Controllers.Class">
-            <summary>
-            The name of the product
-            </summary>
-        </member>
-        <member name="P:PresentationLayer.Controllers.Class.rt">
-            <summary>
-            КАКОГО
-            </summary>
-            <example>Men's basketball shoes</example>
-        </member>
-        <member name="M:PresentationLayer.Controllers.wmsController.getTempqaModels(System.String,System.Nullable{System.DateTime})">
+        <member name="M:PresentationLayer.Controllers.lotController.getTempqaModels(System.String,System.Nullable{System.DateTime})">
              <summary>
-             WMSss
+             Перелік товарів за лотом
              </summary>
-             <param name="livrea"></param>
-             <param name="dateTime"></param>
+             <param name="livrea">Код одержувача лоту</param>
+             <param name="dateTime">Дата створення запису</param>
              <remarks>
              Sample request:
             
-                 https://localhost:44351/api/wms?livrea=609
+                 http://qawms.avrora.lan/api/lot?livrea=609
             
              </remarks>
-        </member>
-        <member name="M:PresentationLayer.Controllers.wmsController.ertyhryrty">
-            <summary>
-            sdfg
-            </summary>
-            <returns></returns>
         </member>
     </members>
 </doc>

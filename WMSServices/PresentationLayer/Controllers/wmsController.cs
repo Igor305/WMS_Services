@@ -8,24 +8,24 @@ namespace PresentationLayer.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class wmsController : ControllerBase
+    public class lotController : ControllerBase
     {
         private IWMSService _WMSService;
 
-        public wmsController(IWMSService wMSService)
+        public lotController(IWMSService wMSService)
         {
             _WMSService = wMSService;
         }
 
         /// <summary>
-        /// WMSss
+        /// Перелік товарів за лотом
         /// </summary>
-        /// <param name="livrea"></param>
-        /// <param name="dateTime"></param>
+        /// <param name="livrea">Код одержувача лоту</param>
+        /// <param name="dateTime">Дата створення запису</param>
         /// <remarks>
         /// Sample request:
         ///
-        ///     https://localhost:44351/api/wms?livrea=609
+        ///     http://qawms.avrora.lan/api/lot?livrea=609
         ///
         /// </remarks>
         [HttpGet]

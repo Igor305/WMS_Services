@@ -4,16 +4,16 @@
         <name>PresentationLayer</name>
     </assembly>
     <members>
-        <member name="M:PresentationLayer.Controllers.wmsController.getTempqaModels(System.String,System.Nullable{System.DateTime})">
+        <member name="M:PresentationLayer.Controllers.lotController.getTempqaModels(System.String,System.Nullable{System.DateTime})">
              <summary>
-             WMSss
+             Перелік товарів за лотом
              </summary>
-             <param name="livrea"></param>
-             <param name="dateTime"></param>
+             <param name="livrea">Код одержувача лоту</param>
+             <param name="dateTime">Дата створення запису</param>
              <remarks>
              Sample request:
             
-                 https://localhost:44351/api/wms?livrea=609
+                 http://qawms.avrora.lan/lot?livrea=609
             
              </remarks>
         </member>
