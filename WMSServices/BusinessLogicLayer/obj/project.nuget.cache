@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "r1CnmJ3v6wTl5d/zV1REOwWCcWgc9rYbFg6t73mj/zqJWkDH6UF6J412m8C+0OwoiJAzekBA0RpjUgoy4Nq+Kg==",
+  "dgSpecHash": "CtntnASWNUdvZi4oI2KATuW2n4xGDY0w9V3faszPwwi5AFZCqqo8sF7VzHJCEaSrhrkOMIL1k/Jl813FJ9POww==",
   "success": true,
-  "projectFilePath": "C:\\Users\\i.talavyria\\Desktop\\project\\WMS_Services\\WMSServices\\BusinessLogicLayer\\BusinessLogicLayer.csproj",
+  "projectFilePath": "C:\\Users\\i.talavyria\\Desktop\\project\\API\\WMS_Services\\WMSServices\\BusinessLogicLayer\\BusinessLogicLayer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\i.talavyria\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\i.talavyria\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

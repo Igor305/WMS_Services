@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "AEbURiM7wLljCT1q5yZGM+804R5v09DBhwTEseSbgBEOV7BX/VYZzutPihkaFEpEBoBvWyF6WXaXZ0AV7SQPew==",
+  "dgSpecHash": "Ws8/Xh1hxmr4SEnPPC/S8huBIVpiDUcGv1upNxxP/p8ksug8PKCvhQKC5uGVtlYKdvokZs2N9PAJvgOOUnG7fw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\i.talavyria\\Desktop\\project\\WMS_Services\\WMSServices\\PresentationLayer\\PresentationLayer.csproj",
+  "projectFilePath": "C:\\Users\\i.talavyria\\Desktop\\project\\API\\WMS_Services\\WMSServices\\PresentationLayer\\PresentationLayer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\i.talavyria\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\i.talavyria\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

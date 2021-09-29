@@ -28,8 +28,8 @@ namespace BusinessLogicLayer.Services
 
             if (key != _configuration["Api:Key"])
             {
-                crTempqa.resultDescription.Status = 1;
-                crTempqa.resultDescription.Message = "erorr key";
+                crTempqa.Status = 1;
+                crTempqa.Message = "erorr key";
 
                 CrTempqaResponseModel tempqaResponseModel = _mapper.Map<CrTempqaResponse, CrTempqaResponseModel>(crTempqa);
 
@@ -38,8 +38,8 @@ namespace BusinessLogicLayer.Services
 
             if (livrea == null)
             {
-                crTempqa.resultDescription.Status = 1;
-                crTempqa.resultDescription.Message = "Livrea = null";
+                crTempqa.Status = 1;
+                crTempqa.Message = "Livrea = null";
 
                 CrTempqaResponseModel tempqaResponseModel = _mapper.Map<CrTempqaResponse, CrTempqaResponseModel>(crTempqa);
 
@@ -57,9 +57,9 @@ namespace BusinessLogicLayer.Services
 
             CrTempqaResponseModel crTempqaResponseModel = _mapper.Map<CrTempqaResponse, CrTempqaResponseModel>(crTempqa);
 
-            if (crTempqaResponseModel.resultDescription.Message == "successfully")
+            if (crTempqaResponseModel.Message == "successfully")
             {
-                crTempqaResponseModel.resultDescription.Status = 0;
+                crTempqaResponseModel.Status = 0;
             }
 
             return crTempqaResponseModel;

@@ -23,8 +23,8 @@ namespace DataAccessLayer.Repositories.EFRepositories
         {
             CrTempqaResponse crTempqaResponse = new CrTempqaResponse();
 
-            crTempqaResponse.resultDescription.Status = 2;
-            crTempqaResponse.resultDescription.Message = "successfully";
+            crTempqaResponse.Status = 2;
+            crTempqaResponse.Message = "successfully";
 
             try
             {
@@ -34,13 +34,13 @@ namespace DataAccessLayer.Repositories.EFRepositories
 
                 if (message != "successfully")
                 {
-                    crTempqaResponse.resultDescription.Status = 3;               
+                    crTempqaResponse.Status = 3;               
                     throw new Exception(message);
                 }
             }
             catch (Exception e)
             {
-                crTempqaResponse.resultDescription.Message = e.Message;
+                crTempqaResponse.Message = e.Message;
                 return crTempqaResponse;
             }
             return crTempqaResponse;
@@ -66,8 +66,8 @@ namespace DataAccessLayer.Repositories.EFRepositories
         {
             CrTempqaResponse crTempqaResponse = new CrTempqaResponse();
 
-            crTempqaResponse.resultDescription.Status = 2;
-            crTempqaResponse.resultDescription.Message = "successfully";
+            crTempqaResponse.Status = 2;
+            crTempqaResponse.Message = "successfully";
 
             try
             {
@@ -77,13 +77,13 @@ namespace DataAccessLayer.Repositories.EFRepositories
 
                 if (message != "successfully")
                 {
-                    crTempqaResponse.resultDescription.Status = 3;
+                    crTempqaResponse.Status = 3;
                     throw new Exception(message);
                 }
             }
             catch (Exception e)
             {
-                crTempqaResponse.resultDescription.Message = e.Message;
+                crTempqaResponse.Message = e.Message;
                 return crTempqaResponse;
             }
             return crTempqaResponse;
