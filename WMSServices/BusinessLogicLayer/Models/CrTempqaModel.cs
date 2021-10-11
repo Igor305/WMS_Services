@@ -68,5 +68,9 @@ namespace BusinessLogicLayer.Models
         /// Дата створення запису
         /// </summary>
         public DateTime? Datcre { get; set; }
+        /// <summary>
+        /// Назва товару
+        /// </summary>
+        public string Libpro { get; set; }
     }
 }

@@ -22,5 +22,6 @@ namespace DataAccessLayer.Entities.AvroraWMS
         public string Block { get; set; }
         public string Adrums { get; set; }
         public DateTime? Datcre { get; set; }
+        public string Libpro { get; set; }
     }
 }

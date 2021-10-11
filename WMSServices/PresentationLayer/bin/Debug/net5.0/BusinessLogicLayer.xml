@@ -84,6 +84,11 @@
             Дата створення запису
             </summary>
         </member>
+        <member name="P:BusinessLogicLayer.Models.CrTempqaModel.Libpro">
+            <summary>
+            Назва товару
+            </summary>
+        </member>
         <member name="P:BusinessLogicLayer.Models.Response.CrTempqaResponseModel.Status">
             <summary>
             Числовий код помилки: <para>&#160;</para> 
