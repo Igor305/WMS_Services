@@ -28,8 +28,19 @@ namespace DataAccessLayer.Repositories.EFRepositories
 
             try
             {
-                crTempqaResponse.crTempqaModels = await _avroraWMSContext.CrTempqas.Where(x => x.Livrea == livrea).ToListAsync();
+                // Find Livrea
+                List<CrTemp> crTemps = _avroraWMSContext.CrTemps.FromSqlRaw($"Select * From [WMS_ORACLE]..[STK511TRN].[CR_TEMPQA] Where LIVREA = {livrea}").ToList();
 
+                if (crTemps.Count ==0)
+                {
+                    crTempqaResponse.crTempqaModels = new List<CrTempqa>();
+                    crTempqaResponse.Status = 3;
+                    crTempqaResponse.Message = $"No products in Oracle when livrea = {livrea}";
+
+                    return crTempqaResponse;
+                }
+
+                // Block All USSCC
                 string message = blockUsscc(livrea);
 
                 if (message != "successfully")
@@ -37,12 +48,23 @@ namespace DataAccessLayer.Repositories.EFRepositories
                     crTempqaResponse.Status = 3;               
                     throw new Exception(message);
                 }
+
+                // Get USSCC FROM WMS
+                if (crTemps.Count != 0)
+                {
+                    List<string> usscc = new List<string>();
+                    crTemps.ForEach(x => usscc.Add(x.Usscc));
+
+                    crTempqaResponse.crTempqaModels = await _avroraWMSContext.CrTempqas.Where(x => usscc.Contains(x.Usscc)).ToListAsync();
+                }
+
             }
             catch (Exception e)
             {
                 crTempqaResponse.Message = e.Message;
                 return crTempqaResponse;
             }
+
             return crTempqaResponse;
         }
 
@@ -71,14 +93,34 @@ namespace DataAccessLayer.Repositories.EFRepositories
 
             try
             {
-                crTempqaResponse.crTempqaModels = await _avroraWMSContext.CrTempqas.Where(x => x.Livrea == livrea && x.Datcre.Value.Date == dateTime.Value.Date).ToListAsync();
+                // Find Livrea
+                List<CrTemp> crTemps = _avroraWMSContext.CrTemps.FromSqlRaw($"Select * From [WMS_ORACLE]..[STK511TRN].[CR_TEMPQA] Where LIVREA = {livrea} AND (CAST(DATCRE AS date) = '{dateTime.Value.Year}-{dateTime.Value.Month}-{dateTime.Value.Day}')").ToList();
 
+                if (crTemps.Count == 0)
+                {
+                    crTempqaResponse.crTempqaModels = new List<CrTempqa>();
+                    crTempqaResponse.Status = 3;
+                    crTempqaResponse.Message = $"No products in Oracle when livrea = {livrea} and DATCRE = {dateTime}";
+
+                    return crTempqaResponse;
+                }
+
+                // Block All USSCC
                 string message = blockUssccForPeriod(livrea, dateTime);
 
                 if (message != "successfully")
                 {
                     crTempqaResponse.Status = 3;
                     throw new Exception(message);
+                }
+
+                // Get USSCC FROM WMS
+                if (crTemps.Count != 0)
+                {
+                    List<string> usscc = new List<string>();
+                    crTemps.ForEach(x => usscc.Add(x.Usscc));
+
+                    crTempqaResponse.crTempqaModels = await _avroraWMSContext.CrTempqas.Where(x => usscc.Contains(x.Usscc) && x.Datcre.Value.Date == dateTime.Value.Date).ToListAsync();
                 }
             }
             catch (Exception e)
