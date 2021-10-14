@@ -33,7 +33,7 @@ namespace DataAccessLayer.Repositories.EFRepositories
 
                 if (crTemps.Count ==0)
                 {
-                    crTempqaResponse.crTempqaModels = new List<CrTempqa>();
+                    crTempqaResponse.crTempqaModels = new List<CrTemp>();
                     crTempqaResponse.Status = 3;
                     crTempqaResponse.Message = $"No products in Oracle when livrea = {livrea}";
 
@@ -52,10 +52,13 @@ namespace DataAccessLayer.Repositories.EFRepositories
                 // Get USSCC FROM WMS
                 if (crTemps.Count != 0)
                 {
-                    List<string> usscc = new List<string>();
-                    crTemps.ForEach(x => usscc.Add(x.Usscc));
+                    crTempqaResponse.crTempqaModels = crTemps;
+                    
+                    /* 
+                     List<string> usscc = new List<string>();
+                     crTemps.ForEach(x => usscc.Add(x.Usscc));
 
-                    crTempqaResponse.crTempqaModels = await _avroraWMSContext.CrTempqas.Where(x => usscc.Contains(x.Usscc)).ToListAsync();
+                     crTempqaResponse.crTempqaModels = await _avroraWMSContext.CrTempqas.Where(x => usscc.Contains(x.Usscc)).ToListAsync();*/
                 }
 
             }
@@ -98,7 +101,7 @@ namespace DataAccessLayer.Repositories.EFRepositories
 
                 if (crTemps.Count == 0)
                 {
-                    crTempqaResponse.crTempqaModels = new List<CrTempqa>();
+                    crTempqaResponse.crTempqaModels = new List<CrTemp>();
                     crTempqaResponse.Status = 3;
                     crTempqaResponse.Message = $"No products in Oracle when livrea = {livrea} and DATCRE = {dateTime}";
 
@@ -117,10 +120,12 @@ namespace DataAccessLayer.Repositories.EFRepositories
                 // Get USSCC FROM WMS
                 if (crTemps.Count != 0)
                 {
-                    List<string> usscc = new List<string>();
+                    crTempqaResponse.crTempqaModels = crTemps;
+
+                    /*List<string> usscc = new List<string>();
                     crTemps.ForEach(x => usscc.Add(x.Usscc));
 
-                    crTempqaResponse.crTempqaModels = await _avroraWMSContext.CrTempqas.Where(x => usscc.Contains(x.Usscc) && x.Datcre.Value.Date == dateTime.Value.Date).ToListAsync();
+                    crTempqaResponse.crTempqaModels = await _avroraWMSContext.CrTempqas.Where(x => usscc.Contains(x.Usscc) && x.Datcre.Value.Date == dateTime.Value.Date).ToListAsync();*/
                 }
             }
             catch (Exception e)

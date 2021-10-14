@@ -5,7 +5,7 @@ namespace DataAccessLayer.Entities
 {
     public class CrTempqaResponse
     {
-        public List<CrTempqa> crTempqaModels { get; set; }
+        public List<CrTemp> crTempqaModels { get; set; }
         /// <summary>
         /// Числовий код помилки: <para>&#160;</para> 
         /// <para>&#8226;</para> 0 - Без помилок <para>&#160;</para> 
@@ -21,7 +21,7 @@ namespace DataAccessLayer.Entities
 
         public CrTempqaResponse()
         {
-            crTempqaModels = new List<CrTempqa>();
+            crTempqaModels = new List<CrTemp>();
         }
     }
 }

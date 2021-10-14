@@ -11,7 +11,7 @@ namespace BusinessLogicLayer.AutoHelper
         public MapperProfile()
         {
             CreateMap<CrTempqaResponse, CrTempqaResponseModel>();
-            CreateMap<CrTempqa, CrTempqaModel>();
+            CreateMap<CrTemp, CrTempqaModel>();
             CreateMap<DataAccessLayer.Entities.ResultDescription, Models.ResultDescription>();
         }
     }
