@@ -126,7 +126,6 @@ C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\PresentationLa
 C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\PresentationLayer\obj\Release\net5.0\staticwebassets\PresentationLayer.StaticWebAssets.xml
 C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\PresentationLayer\obj\Release\net5.0\scopedcss\bundle\PresentationLayer.styles.css
 C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\PresentationLayer\obj\Release\net5.0\PresentationLayer.RazorTargetAssemblyInfo.cache
-C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\PresentationLayer\obj\Release\net5.0\PresentationLayer.csproj.CopyComplete
 C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\PresentationLayer\obj\Release\net5.0\PresentationLayer.dll
 C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\PresentationLayer\obj\Release\net5.0\ref\PresentationLayer.dll
 C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\PresentationLayer\obj\Release\net5.0\PresentationLayer.xml

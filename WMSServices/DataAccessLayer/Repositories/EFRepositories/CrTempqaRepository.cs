@@ -23,7 +23,7 @@ namespace DataAccessLayer.Repositories.EFRepositories
         {
             CrTempqaResponse crTempqaResponse = new CrTempqaResponse();
 
-            crTempqaResponse.Status = 2;
+            crTempqaResponse.Status = 3;
             crTempqaResponse.Message = "successfully";
 
             try
@@ -77,7 +77,7 @@ namespace DataAccessLayer.Repositories.EFRepositories
 
             try
             {
-                List<CrTemp> crTemps = _avroraWMSContext.CrTemps.FromSqlRaw($"SELECT * FROM[WMS_ORACLE]..[STK511TRN].[CR_TEMPQA] update [WMS_ORACLE]..[STK511TRN].[CR_TEMPQA] set BLOCK = '0' Where USSCC In(SELECT USSCC FROM CR_TEMPQA Where LIVREA = {livrea})").ToList();
+                List<CrTemp> crTemps = _avroraWMSContext.CrTemps.FromSqlRaw($"SELECT * FROM[WMS_ORACLE]..[STK511TRN].[CR_TEMPQA] update [WMS_ORACLE]..[STK511TRN].[CR_TEMPQA] set BLOCK = '0' Where LIVREA = {livrea}").ToList();
             }
             catch (Exception e)
             {
@@ -91,7 +91,7 @@ namespace DataAccessLayer.Repositories.EFRepositories
         {
             CrTempqaResponse crTempqaResponse = new CrTempqaResponse();
 
-            crTempqaResponse.Status = 2;
+            crTempqaResponse.Status = 3;
             crTempqaResponse.Message = "successfully";
 
             try
@@ -142,7 +142,7 @@ namespace DataAccessLayer.Repositories.EFRepositories
 
             try
             {
-                List<CrTemp> crTemps = _avroraWMSContext.CrTemps.FromSqlRaw($"SELECT * FROM[WMS_ORACLE]..[STK511TRN].[CR_TEMPQA] update [WMS_ORACLE]..[STK511TRN].[CR_TEMPQA] set BLOCK = '0' Where (CAST(DATCRE AS date) = '{dateTime.Value.Year}-{dateTime.Value.Month}-{dateTime.Value.Day}') AND USSCC In(SELECT USSCC FROM CR_TEMPQA Where LIVREA = {livrea})").ToList();
+                List<CrTemp> crTemps = _avroraWMSContext.CrTemps.FromSqlRaw($"SELECT * FROM[WMS_ORACLE]..[STK511TRN].[CR_TEMPQA] update [WMS_ORACLE]..[STK511TRN].[CR_TEMPQA] set BLOCK = '0' Where (CAST(DATCRE AS date) = '{dateTime.Value.Year}-{dateTime.Value.Month}-{dateTime.Value.Day}') AND LIVREA = {livrea}").ToList();
             }
             catch (Exception e)
             {

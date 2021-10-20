@@ -14,6 +14,7 @@ namespace DataAccessLayer.AppContext
         public AvroraWMSContext(DbContextOptions<AvroraWMSContext> options)
             : base(options)
         {
+            Database.SetCommandTimeout(60);
         }
 
         public virtual DbSet<Client> Clients { get; set; }
