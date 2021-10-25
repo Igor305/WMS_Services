@@ -29,7 +29,7 @@ namespace DataAccessLayer.Repositories.EFRepositories
             try
             {
                 // Find Livrea
-                List<CrTemp> crTemps = _avroraWMSContext.CrTemps.FromSqlRaw($"Select * From [WMS_ORACLE]..[STK511TRN].[CR_TEMPQA] Where LIVREA = {livrea}").ToList();
+                List<CrTemp> crTemps = _avroraWMSContext.CrTemps.FromSqlRaw($"Select * From [WMS_ORACLE]..[STK511TRN].[CR_TEMPQA] Where LIVREA = {livrea}" ).ToList();
 
                 if (crTemps.Count ==0)
                 {
@@ -41,18 +41,18 @@ namespace DataAccessLayer.Repositories.EFRepositories
                 }
 
                 // Block All USSCC
-                string message = blockUsscc(livrea);
+                (string, List<CrTemp>) block = blockUsscc(livrea);
 
-                if (message != "successfully")
+                if (block.Item1 != "successfully")
                 {
                     crTempqaResponse.Status = 3;               
-                    throw new Exception(message);
+                    throw new Exception(block.Item1);
                 }
 
                 // Get USSCC FROM WMS
-                if (crTemps.Count != 0)
+                if (block.Item2.Count != 0)
                 {
-                    crTempqaResponse.crTempqaModels = crTemps;
+                    crTempqaResponse.crTempqaModels = block.Item2;
                     
                     /* 
                      List<string> usscc = new List<string>();
@@ -71,20 +71,30 @@ namespace DataAccessLayer.Repositories.EFRepositories
             return crTempqaResponse;
         }
 
-        private string blockUsscc(string livrea)
+        private (string, List<CrTemp>) blockUsscc(string livrea)
         {
+            List<CrTemp> crTemps = new List<CrTemp>();
             string message = "successfully";
 
             try
             {
-                List<CrTemp> crTemps = _avroraWMSContext.CrTemps.FromSqlRaw($"SELECT * FROM[WMS_ORACLE]..[STK511TRN].[CR_TEMPQA] update [WMS_ORACLE]..[STK511TRN].[CR_TEMPQA] set BLOCK = '0' Where LIVREA = {livrea}").ToList();
+                crTemps = _avroraWMSContext.CrTemps.FromSqlRaw($"update [WMS_ORACLE]..[STK511TRN].[CR_TEMPQA] set BLOCK = '0' Where LIVREA = {livrea} SELECT * FROM[WMS_ORACLE]..[STK511TRN].[CR_TEMPQA] Where LIVREA = {livrea}").ToList();
+
+                foreach (CrTemp crTemp in crTemps)
+                {
+                    if(crTemp.Block != "0")
+                    {
+                        message = "not blocked on Oracle";
+                        break;
+                    }
+                }
             }
             catch (Exception e)
             {
                 message = e.Message;
             }
 
-            return message;
+            return (message, crTemps);
         }
 
         public async Task<CrTempqaResponse> getTempForPeriod(string livrea, DateTime? dateTime)
@@ -109,18 +119,18 @@ namespace DataAccessLayer.Repositories.EFRepositories
                 }
 
                 // Block All USSCC
-                string message = blockUssccForPeriod(livrea, dateTime);
+                (string, List<CrTemp>) block = blockUssccForPeriod(livrea, dateTime);
 
-                if (message != "successfully")
+                if (block.Item1 != "successfully")
                 {
                     crTempqaResponse.Status = 3;
-                    throw new Exception(message);
+                    throw new Exception(block.Item1);
                 }
 
                 // Get USSCC FROM WMS
-                if (crTemps.Count != 0)
+                if (block.Item2.Count != 0)
                 {
-                    crTempqaResponse.crTempqaModels = crTemps;
+                    crTempqaResponse.crTempqaModels = block.Item2;
 
                     /*List<string> usscc = new List<string>();
                     crTemps.ForEach(x => usscc.Add(x.Usscc));
@@ -136,20 +146,30 @@ namespace DataAccessLayer.Repositories.EFRepositories
             return crTempqaResponse;
         }
 
-        private string blockUssccForPeriod(string livrea, DateTime? dateTime)
+        private (string, List<CrTemp>) blockUssccForPeriod(string livrea, DateTime? dateTime)
         {
+            List<CrTemp> crTemps = new List<CrTemp>();
             string message = "successfully";
 
             try
             {
-                List<CrTemp> crTemps = _avroraWMSContext.CrTemps.FromSqlRaw($"SELECT * FROM[WMS_ORACLE]..[STK511TRN].[CR_TEMPQA] update [WMS_ORACLE]..[STK511TRN].[CR_TEMPQA] set BLOCK = '0' Where (CAST(DATCRE AS date) = '{dateTime.Value.Year}-{dateTime.Value.Month}-{dateTime.Value.Day}') AND LIVREA = {livrea}").ToList();
+                crTemps = _avroraWMSContext.CrTemps.FromSqlRaw($"update [WMS_ORACLE]..[STK511TRN].[CR_TEMPQA] set BLOCK = '0' Where (CAST(DATCRE AS date) = '{dateTime.Value.Year}-{dateTime.Value.Month}-{dateTime.Value.Day}') AND LIVREA = {livrea} SELECT * FROM[WMS_ORACLE]..[STK511TRN].[CR_TEMPQA] Where (CAST(DATCRE AS date) = '{dateTime.Value.Year}-{dateTime.Value.Month}-{dateTime.Value.Day}') AND LIVREA = {livrea}").ToList();
+
+                foreach (CrTemp crTemp in crTemps)
+                {
+                    if (crTemp.Block != "0")
+                    {
+                        message = "not blocked on Oracle";
+                        break;
+                    }
+                }
             }
             catch (Exception e)
             {
                 message = e.Message;
             }
 
-            return message;
+            return (message, crTemps);
         }
     }
 }
