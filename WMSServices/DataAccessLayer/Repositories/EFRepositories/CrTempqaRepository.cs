@@ -29,9 +29,9 @@ namespace DataAccessLayer.Repositories.EFRepositories
             try
             {
                 // Find Livrea
-                List<CrTemp> crTemps = _avroraWMSContext.CrTemps.FromSqlRaw($"Select * From [WMS_ORACLE]..[STK511TRN].[CR_TEMPQA] Where LIVREA = {livrea}" ).ToList();
+                List<CrTemp> crTemps = _avroraWMSContext.CrTemps.FromSqlRaw($"Select * From [WMS_ORACLE]..[STK511TRN].[CR_TEMPQA] Where LIVREA = {livrea}"  ).ToList();
 
-                if (crTemps.Count ==0)
+                if (crTemps.Count == 0)
                 {
                     crTempqaResponse.crTempqaModels = new List<CrTemp>();
                     crTempqaResponse.Status = 3;
@@ -53,12 +53,6 @@ namespace DataAccessLayer.Repositories.EFRepositories
                 if (block.Item2.Count != 0)
                 {
                     crTempqaResponse.crTempqaModels = block.Item2;
-                    
-                    /* 
-                     List<string> usscc = new List<string>();
-                     crTemps.ForEach(x => usscc.Add(x.Usscc));
-
-                     crTempqaResponse.crTempqaModels = await _avroraWMSContext.CrTempqas.Where(x => usscc.Contains(x.Usscc)).ToListAsync();*/
                 }
 
             }
@@ -78,7 +72,8 @@ namespace DataAccessLayer.Repositories.EFRepositories
 
             try
             {
-                crTemps = _avroraWMSContext.CrTemps.FromSqlRaw($"update [WMS_ORACLE]..[STK511TRN].[CR_TEMPQA] set BLOCK = '0' Where LIVREA = {livrea} SELECT * FROM[WMS_ORACLE]..[STK511TRN].[CR_TEMPQA] Where LIVREA = {livrea}").ToList();
+                crTemps = _avroraWMSContext.CrTemps.FromSqlRaw($"update [WMS_ORACLE]..[STK511TRN].[CR_TEMPQA] set BLOCK = '0' Where LIVREA = {livrea} AND (BLOCK is NUll Or BLOCK != 1) " +
+                    $"SELECT * FROM[WMS_ORACLE]..[STK511TRN].[CR_TEMPQA] Where LIVREA = {livrea} AND (BLOCK is NUll Or BLOCK != 1)").ToList();
 
                 foreach (CrTemp crTemp in crTemps)
                 {
@@ -131,11 +126,6 @@ namespace DataAccessLayer.Repositories.EFRepositories
                 if (block.Item2.Count != 0)
                 {
                     crTempqaResponse.crTempqaModels = block.Item2;
-
-                    /*List<string> usscc = new List<string>();
-                    crTemps.ForEach(x => usscc.Add(x.Usscc));
-
-                    crTempqaResponse.crTempqaModels = await _avroraWMSContext.CrTempqas.Where(x => usscc.Contains(x.Usscc) && x.Datcre.Value.Date == dateTime.Value.Date).ToListAsync();*/
                 }
             }
             catch (Exception e)
@@ -153,7 +143,8 @@ namespace DataAccessLayer.Repositories.EFRepositories
 
             try
             {
-                crTemps = _avroraWMSContext.CrTemps.FromSqlRaw($"update [WMS_ORACLE]..[STK511TRN].[CR_TEMPQA] set BLOCK = '0' Where (CAST(DATCRE AS date) = '{dateTime.Value.Year}-{dateTime.Value.Month}-{dateTime.Value.Day}') AND LIVREA = {livrea} SELECT * FROM[WMS_ORACLE]..[STK511TRN].[CR_TEMPQA] Where (CAST(DATCRE AS date) = '{dateTime.Value.Year}-{dateTime.Value.Month}-{dateTime.Value.Day}') AND LIVREA = {livrea}").ToList();
+                crTemps = _avroraWMSContext.CrTemps.FromSqlRaw($"update [WMS_ORACLE]..[STK511TRN].[CR_TEMPQA] set BLOCK = '0' Where (CAST(DATCRE AS date) = '{dateTime.Value.Year}-{dateTime.Value.Month}-{dateTime.Value.Day}') AND LIVREA = {livrea} AND (BLOCK is NUll Or BLOCK != 1) " +
+                    $"SELECT * FROM[WMS_ORACLE]..[STK511TRN].[CR_TEMPQA] Where (CAST(DATCRE AS date) = '{dateTime.Value.Year}-{dateTime.Value.Month}-{dateTime.Value.Day}') AND LIVREA = {livrea}  AND (BLOCK is NUll Or BLOCK != 1)").ToList();
 
                 foreach (CrTemp crTemp in crTemps)
                 {
