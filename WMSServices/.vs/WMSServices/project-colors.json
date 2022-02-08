@@ -1,0 +1,21 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "4f6562e3-25d4-445f-9909-03d1a147335b": {
+      "ProjectGuid": "4f6562e3-25d4-445f-9909-03d1a147335b",
+      "DisplayName": "PresentationLayer",
+      "ColorIndex": 0
+    },
+    "9625cc03-17ea-40b7-8869-20cb05238e5b": {
+      "ProjectGuid": "9625cc03-17ea-40b7-8869-20cb05238e5b",
+      "DisplayName": "DataAccessLayer",
+      "ColorIndex": 1
+    },
+    "8d625d76-4eee-4642-9042-4295792a5baf": {
+      "ProjectGuid": "8d625d76-4eee-4642-9042-4295792a5baf",
+      "DisplayName": "BusinessLogicLayer",
+      "ColorIndex": 2
+    }
+  },
+  "NextColorIndex": 3
+}

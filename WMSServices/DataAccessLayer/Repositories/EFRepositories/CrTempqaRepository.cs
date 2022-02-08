@@ -29,7 +29,7 @@ namespace DataAccessLayer.Repositories.EFRepositories
             try
             {
                 // Find Livrea
-                List<CrTemp> crTemps = _avroraWMSContext.CrTemps.FromSqlRaw($"Select * From [WMS_ORACLE]..[STK511TRN].[CR_TEMPQA] Where LIVREA = {livrea}"  ).ToList();
+                List<CrTemp> crTemps = _avroraWMSContext.CrTemps.FromSqlRaw($"Select * From [PROD_WMS_ORACLE]..[STK511PROD].[CR_TEMPQA] Where LIVREA = {livrea}"  ).ToList();
 
                 if (crTemps.Count == 0)
                 {
@@ -72,8 +72,8 @@ namespace DataAccessLayer.Repositories.EFRepositories
 
             try
             {
-                crTemps = _avroraWMSContext.CrTemps.FromSqlRaw($"update [WMS_ORACLE]..[STK511TRN].[CR_TEMPQA] set BLOCK = '0' Where LIVREA = {livrea} AND (BLOCK is NUll Or BLOCK != 1) " +
-                    $"SELECT * FROM[WMS_ORACLE]..[STK511TRN].[CR_TEMPQA] Where LIVREA = {livrea} AND (BLOCK is NUll Or BLOCK != 1)").ToList();
+                crTemps = _avroraWMSContext.CrTemps.FromSqlRaw($"update [PROD_WMS_ORACLE]..[STK511PROD].[CR_TEMPQA] set BLOCK = '0' Where LIVREA = {livrea} AND (BLOCK is NUll Or BLOCK != 1) " +
+                    $"SELECT * FROM [PROD_WMS_ORACLE]..[STK511PROD].[CR_TEMPQA] Where LIVREA = {livrea} AND (BLOCK is NUll Or BLOCK != 1)").ToList();
 
                 foreach (CrTemp crTemp in crTemps)
                 {
@@ -102,7 +102,7 @@ namespace DataAccessLayer.Repositories.EFRepositories
             try
             {
                 // Find Livrea
-                List<CrTemp> crTemps = _avroraWMSContext.CrTemps.FromSqlRaw($"Select * From [WMS_ORACLE]..[STK511TRN].[CR_TEMPQA] Where LIVREA = {livrea} AND (CAST(DATCRE AS date) = '{dateTime.Value.Year}-{dateTime.Value.Month}-{dateTime.Value.Day}')").ToList();
+                List<CrTemp> crTemps = _avroraWMSContext.CrTemps.FromSqlRaw($"Select * From [PROD_WMS_ORACLE]..[STK511PROD].[CR_TEMPQA] Where LIVREA = {livrea} AND (CAST(DATCRE AS date) = '{dateTime.Value.Year}-{dateTime.Value.Month}-{dateTime.Value.Day}')").ToList();
 
                 if (crTemps.Count == 0)
                 {
@@ -143,8 +143,8 @@ namespace DataAccessLayer.Repositories.EFRepositories
 
             try
             {
-                crTemps = _avroraWMSContext.CrTemps.FromSqlRaw($"update [WMS_ORACLE]..[STK511TRN].[CR_TEMPQA] set BLOCK = '0' Where (CAST(DATCRE AS date) = '{dateTime.Value.Year}-{dateTime.Value.Month}-{dateTime.Value.Day}') AND LIVREA = {livrea} AND (BLOCK is NUll Or BLOCK != 1) " +
-                    $"SELECT * FROM[WMS_ORACLE]..[STK511TRN].[CR_TEMPQA] Where (CAST(DATCRE AS date) = '{dateTime.Value.Year}-{dateTime.Value.Month}-{dateTime.Value.Day}') AND LIVREA = {livrea}  AND (BLOCK is NUll Or BLOCK != 1)").ToList();
+                crTemps = _avroraWMSContext.CrTemps.FromSqlRaw($"update [PROD_WMS_ORACLE]..[STK511PROD].[CR_TEMPQA] set BLOCK = '0' Where (CAST(DATCRE AS date) = '{dateTime.Value.Year}-{dateTime.Value.Month}-{dateTime.Value.Day}') AND LIVREA = {livrea} AND (BLOCK is NUll Or BLOCK != 1) " +
+                    $"SELECT * FROM [PROD_WMS_ORACLE]..[STK511PROD].[CR_TEMPQA] Where (CAST(DATCRE AS date) = '{dateTime.Value.Year}-{dateTime.Value.Month}-{dateTime.Value.Day}') AND LIVREA = {livrea}  AND (BLOCK is NUll Or BLOCK != 1)").ToList();
 
                 foreach (CrTemp crTemp in crTemps)
                 {
