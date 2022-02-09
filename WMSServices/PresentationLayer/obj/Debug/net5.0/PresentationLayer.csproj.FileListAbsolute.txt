@@ -193,7 +193,6 @@ C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\PresentationLa
 C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\PresentationLayer\obj\Debug\net5.0\PresentationLayer.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\PresentationLayer\obj\Debug\net5.0\PresentationLayer.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\PresentationLayer\obj\Debug\net5.0\staticwebassets\PresentationLayer.StaticWebAssets.Manifest.cache
-C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\PresentationLayer\obj\Debug\net5.0\staticwebassets\PresentationLayer.StaticWebAssets.xml
 C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\PresentationLayer\obj\Debug\net5.0\scopedcss\bundle\PresentationLayer.styles.css
 C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\PresentationLayer\obj\Debug\net5.0\PresentationLayer.RazorTargetAssemblyInfo.cache
 C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\PresentationLayer\obj\Debug\net5.0\PresentationLayer.csproj.CopyComplete
