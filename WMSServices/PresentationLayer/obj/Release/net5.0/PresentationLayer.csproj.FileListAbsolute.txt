@@ -72,7 +72,6 @@ C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\PresentationLa
 C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\PresentationLayer\bin\Release\net5.0\PresentationLayer.runtimeconfig.json
 C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\PresentationLayer\bin\Release\net5.0\PresentationLayer.runtimeconfig.dev.json
 C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\PresentationLayer\bin\Release\net5.0\PresentationLayer.dll
-C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\PresentationLayer\bin\Release\net5.0\ref\PresentationLayer.dll
 C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\PresentationLayer\bin\Release\net5.0\PresentationLayer.pdb
 C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\PresentationLayer\bin\Release\net5.0\PresentationLayer.xml
 C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\PresentationLayer\bin\Release\net5.0\AutoMapper.dll
@@ -131,3 +130,4 @@ C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\PresentationLa
 C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\PresentationLayer\obj\Release\net5.0\PresentationLayer.pdb
 C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\PresentationLayer\obj\Release\net5.0\PresentationLayer.genruntimeconfig.cache
 C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\PresentationLayer\obj\Release\net5.0\PresentationLayer.csproj.CopyComplete
+C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\PresentationLayer\obj\Release\net5.0\refint\PresentationLayer.dll

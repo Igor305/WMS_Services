@@ -43,9 +43,9 @@ C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\BusinessLogicL
 C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\BusinessLogicLayer\obj\Debug\net5.0\BusinessLogicLayer.pdb
 C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\BusinessLogicLayer\bin\Debug\net5.0\BusinessLogicLayer.deps.json
 C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\BusinessLogicLayer\bin\Debug\net5.0\BusinessLogicLayer.dll
-C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\BusinessLogicLayer\bin\Debug\net5.0\ref\BusinessLogicLayer.dll
 C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\BusinessLogicLayer\bin\Debug\net5.0\BusinessLogicLayer.pdb
 C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\BusinessLogicLayer\bin\Debug\net5.0\BusinessLogicLayer.xml
 C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\BusinessLogicLayer\bin\Debug\net5.0\DataAccessLayer.dll
 C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\BusinessLogicLayer\bin\Debug\net5.0\DataAccessLayer.pdb
 C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\BusinessLogicLayer\obj\Debug\net5.0\BusinessLogicLayer.csproj.CopyComplete
+C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\BusinessLogicLayer\obj\Debug\net5.0\refint\BusinessLogicLayer.dll

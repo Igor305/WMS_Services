@@ -17,7 +17,6 @@ C:\Users\i.talavyria\Desktop\project\WMS_Services\WMSServices\BusinessLogicLayer
 C:\Users\i.talavyria\Desktop\project\WMS_Services\WMSServices\BusinessLogicLayer\obj\Release\net5.0\BusinessLogicLayer.xml
 C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\BusinessLogicLayer\bin\Release\net5.0\BusinessLogicLayer.deps.json
 C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\BusinessLogicLayer\bin\Release\net5.0\BusinessLogicLayer.dll
-C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\BusinessLogicLayer\bin\Release\net5.0\ref\BusinessLogicLayer.dll
 C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\BusinessLogicLayer\bin\Release\net5.0\BusinessLogicLayer.pdb
 C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\BusinessLogicLayer\bin\Release\net5.0\BusinessLogicLayer.xml
 C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\BusinessLogicLayer\bin\Release\net5.0\DataAccessLayer.dll
@@ -32,3 +31,4 @@ C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\BusinessLogicL
 C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\BusinessLogicLayer\obj\Release\net5.0\ref\BusinessLogicLayer.dll
 C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\BusinessLogicLayer\obj\Release\net5.0\BusinessLogicLayer.xml
 C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\BusinessLogicLayer\obj\Release\net5.0\BusinessLogicLayer.pdb
+C:\Users\i.talavyria\Desktop\project\API\WMS_Services\WMSServices\BusinessLogicLayer\obj\Release\net5.0\refint\BusinessLogicLayer.dll
