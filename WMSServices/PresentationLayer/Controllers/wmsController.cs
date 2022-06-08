@@ -18,7 +18,7 @@ namespace PresentationLayer.Controllers
         }
 
         /// <summary>
-        /// Розблокування лоту
+        /// Блокування лоту на проді
         /// </summary>
         /// <param name="key">Ключ</param>
         /// <param name="livrea">Код одержувача лоту</param>
@@ -40,7 +40,7 @@ namespace PresentationLayer.Controllers
         }
 
         /// <summary>
-        /// Розблокування лоту
+        /// Розблокування лоту на проді
         /// </summary>
         /// <param name="key">Ключ</param>
         /// <param name="livrea">Код одержувача лоту</param>
