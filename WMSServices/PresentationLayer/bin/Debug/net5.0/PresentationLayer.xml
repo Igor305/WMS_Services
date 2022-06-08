@@ -34,7 +34,7 @@
         </member>
         <member name="M:PresentationLayer.Controllers.lotController.getTempqaModels(System.String,System.String,System.Nullable{System.DateTime})">
              <summary>
-             Розблокування лоту
+             Блокування лоту на проді
              </summary>
              <param name="key">Ключ</param>
              <param name="livrea">Код одержувача лоту</param>
@@ -48,7 +48,7 @@
         </member>
         <member name="M:PresentationLayer.Controllers.lotController.getTempqaModelsToUnlock(System.String,System.String,System.Nullable{System.DateTime})">
              <summary>
-             Розблокування лоту
+             Розблокування лоту на проді
              </summary>
              <param name="key">Ключ</param>
              <param name="livrea">Код одержувача лоту</param>
