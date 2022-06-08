@@ -6,6 +6,6 @@ namespace BusinessLogicLayer.Services.Interfaces
 {
     public interface IWMSService
     {
-        public Task<CrTempqaResponseModel> get(string key, string livrea, DateTime? dateTime);
+        public Task<CrTempqaResponseModel> get(string key, string livrea, DateTime? dateTime,string statusBlock);
     }
 }

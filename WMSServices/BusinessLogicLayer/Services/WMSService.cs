@@ -22,7 +22,7 @@ namespace BusinessLogicLayer.Services
             _configuration = configuration;
         }
 
-        public async Task<CrTempqaResponseModel> get(string key, string livrea, DateTime? dateTime)
+        public async Task<CrTempqaResponseModel> get(string key, string livrea, DateTime? dateTime, string statusBlock)
         {
             CrTempqaResponse crTempqa = new CrTempqaResponse();
 
@@ -52,7 +52,7 @@ namespace BusinessLogicLayer.Services
             }
             else
             {
-                crTempqa = await _crTempqaRepository.getTempForPeriod(livrea, dateTime);
+                crTempqa = await _crTempqaRepository.getTempForPeriod(livrea, dateTime, statusBlock);
             }         
 
             CrTempqaResponseModel crTempqaResponseModel = _mapper.Map<CrTempqaResponse, CrTempqaResponseModel>(crTempqa);

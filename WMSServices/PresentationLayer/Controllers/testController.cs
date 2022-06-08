@@ -8,17 +8,17 @@ namespace PresentationLayer.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class lotController : ControllerBase
+    public class testController : ControllerBase
     {
         private readonly IWMSService _WMSService;
 
-        public lotController(IWMSService wMSService)
+        public testController(IWMSService wMSService)
         {
             _WMSService = wMSService;
         }
 
         /// <summary>
-        /// Розблокування лоту
+        /// Блокування лоту на тестовій БД
         /// </summary>
         /// <param name="key">Ключ</param>
         /// <param name="livrea">Код одержувача лоту</param>
@@ -26,13 +26,13 @@ namespace PresentationLayer.Controllers
         /// <remarks>
         /// Sample request:
         ///
-        ///     http://qawms.avrora.lan/api/lot?key=exampleKey&amp;livrea=609
+        ///     http://qawms.avrora.lan/api/test?key=exampleKey&amp;livrea=609
         ///
         /// </remarks>
         [HttpGet]
-        public async Task<CrTempqaResponseModel> getTempqaModels([FromQuery]string key, [FromQuery]string livrea, [FromQuery]DateTime? dateTime)
+        public async Task<CrTempqaResponseModel> getTempqaModels([FromQuery] string key, [FromQuery] string livrea, [FromQuery] DateTime? dateTime)
         {
-            string statusBlock = "block";
+            string statusBlock = "test_block";
 
             CrTempqaResponseModel crTempqaResponseModel = await _WMSService.get(key, livrea, dateTime, statusBlock);
 
@@ -40,7 +40,7 @@ namespace PresentationLayer.Controllers
         }
 
         /// <summary>
-        /// Розблокування лоту
+        /// Розблокування лоту на тестовій БД
         /// </summary>
         /// <param name="key">Ключ</param>
         /// <param name="livrea">Код одержувача лоту</param>
@@ -48,13 +48,13 @@ namespace PresentationLayer.Controllers
         /// <remarks>
         /// Sample request:
         ///
-        ///     http://qawms.avrora.lan/api/lot/unlock?key=exampleKey&amp;livrea=609
+        ///     http://qawms.avrora.lan/api/test/unlock?key=exampleKey&amp;livrea=609
         ///
         /// </remarks>
         [HttpGet("unlock")]
         public async Task<CrTempqaResponseModel> getTempqaModelsToUnlock([FromQuery] string key, [FromQuery] string livrea, [FromQuery] DateTime? dateTime)
         {
-            string statusBlock = "unlock";
+            string statusBlock = "test_unlock";
 
             CrTempqaResponseModel crTempqaResponseModel = await _WMSService.get(key, livrea, dateTime, statusBlock);
 

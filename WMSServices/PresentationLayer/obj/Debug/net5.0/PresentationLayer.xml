@@ -4,9 +4,37 @@
         <name>PresentationLayer</name>
     </assembly>
     <members>
+        <member name="M:PresentationLayer.Controllers.testController.getTempqaModels(System.String,System.String,System.Nullable{System.DateTime})">
+             <summary>
+             Блокування лоту на тестовій БД
+             </summary>
+             <param name="key">Ключ</param>
+             <param name="livrea">Код одержувача лоту</param>
+             <param name="dateTime">Дата створення запису</param>
+             <remarks>
+             Sample request:
+            
+                 http://qawms.avrora.lan/api/test?key=exampleKey&amp;livrea=609
+            
+             </remarks>
+        </member>
+        <member name="M:PresentationLayer.Controllers.testController.getTempqaModelsToUnlock(System.String,System.String,System.Nullable{System.DateTime})">
+             <summary>
+             Розблокування лоту на тестовій БД
+             </summary>
+             <param name="key">Ключ</param>
+             <param name="livrea">Код одержувача лоту</param>
+             <param name="dateTime">Дата створення запису</param>
+             <remarks>
+             Sample request:
+            
+                 http://qawms.avrora.lan/api/test/unlock?key=exampleKey&amp;livrea=609
+            
+             </remarks>
+        </member>
         <member name="M:PresentationLayer.Controllers.lotController.getTempqaModels(System.String,System.String,System.Nullable{System.DateTime})">
              <summary>
-             Перелік товарів за лотом
+             Розблокування лоту
              </summary>
              <param name="key">Ключ</param>
              <param name="livrea">Код одержувача лоту</param>
@@ -15,6 +43,20 @@
              Sample request:
             
                  http://qawms.avrora.lan/api/lot?key=exampleKey&amp;livrea=609
+            
+             </remarks>
+        </member>
+        <member name="M:PresentationLayer.Controllers.lotController.getTempqaModelsToUnlock(System.String,System.String,System.Nullable{System.DateTime})">
+             <summary>
+             Розблокування лоту
+             </summary>
+             <param name="key">Ключ</param>
+             <param name="livrea">Код одержувача лоту</param>
+             <param name="dateTime">Дата створення запису</param>
+             <remarks>
+             Sample request:
+            
+                 http://qawms.avrora.lan/api/lot/unlock?key=exampleKey&amp;livrea=609
             
              </remarks>
         </member>

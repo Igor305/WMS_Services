@@ -92,7 +92,7 @@ namespace DataAccessLayer.Repositories.EFRepositories
             return (message, crTemps);
         }
 
-        public async Task<CrTempqaResponse> getTempForPeriod(string livrea, DateTime? dateTime)
+        public async Task<CrTempqaResponse> getTempForPeriod(string livrea, DateTime? dateTime, string statusBlock)
         {
             CrTempqaResponse crTempqaResponse = new CrTempqaResponse();
 
@@ -101,9 +101,23 @@ namespace DataAccessLayer.Repositories.EFRepositories
 
             try
             {
+                List<CrTemp> crTemps = new List<CrTemp>();
+
                 // Find Livrea
-                List<CrTemp> crTemps = _avroraWMSContext.CrTemps.FromSqlRaw($"SELECT * FROM OPENQUERY([PROD_WMS_ORACLE], 'SELECT * FROM STK511PROD.CR_TEMPQA WHERE LIVREA = {livrea} AND TO_CHAR(DATCRE, ''YYYYMMDD'') = {dateTime.Value.Year}{dateTime.Value.Month.ToString("00")}{dateTime.Value.Day.ToString("00")}')").ToList();               
-                Console.WriteLine(crTemps);
+                switch (statusBlock)
+                {
+
+                    case "block":
+                    case "unblock":
+                        crTemps = _avroraWMSContext.CrTemps.FromSqlRaw($"SELECT * FROM OPENQUERY([PROD_WMS_ORACLE], 'SELECT * FROM STK511PROD.CR_TEMPQA WHERE LIVREA = {livrea} AND TO_CHAR(DATCRE, ''YYYYMMDD'') = {dateTime.Value.Year}{dateTime.Value.Month.ToString("00")}{dateTime.Value.Day.ToString("00")}')").ToList();
+                        break;
+
+                    case "test_block":
+                    case "test_unlock":
+                        crTemps = _avroraWMSContext.CrTemps.FromSqlRaw($"SELECT * FROM OPENQUERY([WMS_ORACLE], 'SELECT * FROM STK511TRN.CR_TEMPQA WHERE LIVREA = {livrea} AND TO_CHAR(DATCRE, ''YYYYMMDD'') = {dateTime.Value.Year}{dateTime.Value.Month.ToString("00")}{dateTime.Value.Day.ToString("00")}')").ToList();
+                        break;
+                }
+
                 if (crTemps.Count == 0)
                 {
                     crTempqaResponse.crTempqaModels = new List<CrTemp>();
@@ -114,7 +128,7 @@ namespace DataAccessLayer.Repositories.EFRepositories
                 }
 
                 // Block All USSCC
-                (string, List<CrTemp>) block = blockUssccForPeriod(livrea, dateTime);
+                (string, List<CrTemp>) block = blockUssccForPeriod(livrea, dateTime, statusBlock);
 
                 if (block.Item1 != "successfully")
                 {
@@ -136,15 +150,31 @@ namespace DataAccessLayer.Repositories.EFRepositories
             return crTempqaResponse;
         }
 
-        private (string, List<CrTemp>) blockUssccForPeriod(string livrea, DateTime? dateTime)
+        private (string, List<CrTemp>) blockUssccForPeriod(string livrea, DateTime? dateTime, string statusBlock)
         {
             List<CrTemp> crTemps = new List<CrTemp>();
             string message = "successfully";
 
             try
-            {              
-                crTemps = _avroraWMSContext.CrTemps.FromSqlRaw($"EXEC (' UPDATE STK511PROD.CR_TEMPQA SET BLOCK = ''0'' WHERE LIVREA = {livrea} AND TO_CHAR(DATCRE, ''YYYYMMDD'') = {dateTime.Value.Year}{dateTime.Value.Month.ToString("00")}{dateTime.Value.Day.ToString("00")} AND(BLOCK IS NULL OR BLOCK <> 1)') AT [PROD_WMS_ORACLE]" +
-                    $"SELECT * FROM OPENQUERY([PROD_WMS_ORACLE], 'SELECT * FROM STK511PROD.CR_TEMPQA WHERE LIVREA = {livrea} AND TO_CHAR(DATCRE, ''YYYYMMDD'') = {dateTime.Value.Year}{dateTime.Value.Month.ToString("00")}{dateTime.Value.Day.ToString("00")} AND (BLOCK IS NULL OR BLOCK <> 1) ')").ToList();
+            {
+                switch (statusBlock) {
+
+                    case "block": crTemps = _avroraWMSContext.CrTemps.FromSqlRaw($"EXEC (' UPDATE STK511PROD.CR_TEMPQA SET BLOCK = ''0'' WHERE LIVREA = {livrea} AND TO_CHAR(DATCRE, ''YYYYMMDD'') = {dateTime.Value.Year}{dateTime.Value.Month.ToString("00")}{dateTime.Value.Day.ToString("00")} AND(BLOCK IS NULL OR BLOCK <> 1)') AT [PROD_WMS_ORACLE]" +
+                        $"SELECT * FROM OPENQUERY([PROD_WMS_ORACLE], 'SELECT * FROM STK511PROD.CR_TEMPQA WHERE LIVREA = {livrea} AND TO_CHAR(DATCRE, ''YYYYMMDD'') = {dateTime.Value.Year}{dateTime.Value.Month.ToString("00")}{dateTime.Value.Day.ToString("00")} AND (BLOCK IS NULL OR BLOCK <> 1) ')").ToList();
+                        break;
+
+                    case "unblock": crTemps = _avroraWMSContext.CrTemps.FromSqlRaw($"EXEC (' UPDATE STK511PROD.CR_TEMPQA SET BLOCK = NULL WHERE LIVREA = {livrea} AND TO_CHAR(DATCRE, ''YYYYMMDD'') = {dateTime.Value.Year}{dateTime.Value.Month.ToString("00")}{dateTime.Value.Day.ToString("00")} AND(BLOCK IS NULL OR BLOCK <> 1)') AT [PROD_WMS_ORACLE]" +
+                        $"SELECT * FROM OPENQUERY([PROD_WMS_ORACLE], 'SELECT * FROM STK511PROD.CR_TEMPQA WHERE LIVREA = {livrea} AND TO_CHAR(DATCRE, ''YYYYMMDD'') = {dateTime.Value.Year}{dateTime.Value.Month.ToString("00")}{dateTime.Value.Day.ToString("00")} AND (BLOCK IS NULL OR BLOCK <> 1) ')").ToList();
+                        break;
+
+                    case "test_block": crTemps = _avroraWMSContext.CrTemps.FromSqlRaw($"EXEC (' UPDATE STK511TRN.CR_TEMPQA SET BLOCK = ''0'' WHERE LIVREA = {livrea} AND TO_CHAR(DATCRE, ''YYYYMMDD'') = {dateTime.Value.Year}{dateTime.Value.Month.ToString("00")}{dateTime.Value.Day.ToString("00")} AND(BLOCK IS NULL OR BLOCK <> 1)') AT [WMS_ORACLE]" +
+                        $"SELECT * FROM OPENQUERY([WMS_ORACLE], 'SELECT * FROM STK511TRN.CR_TEMPQA WHERE LIVREA = {livrea} AND TO_CHAR(DATCRE, ''YYYYMMDD'') = {dateTime.Value.Year}{dateTime.Value.Month.ToString("00")}{dateTime.Value.Day.ToString("00")} AND (BLOCK IS NULL OR BLOCK <> 1) ')").ToList();
+                        break;
+
+                    case "test_unlock": crTemps = _avroraWMSContext.CrTemps.FromSqlRaw($"EXEC (' UPDATE STK511PROD.CR_TEMPQA SET BLOCK = NULL WHERE LIVREA = {livrea} AND TO_CHAR(DATCRE, ''YYYYMMDD'') = {dateTime.Value.Year}{dateTime.Value.Month.ToString("00")}{dateTime.Value.Day.ToString("00")} AND(BLOCK IS NULL OR BLOCK <> 1)') AT [WMS_ORACLE]" +
+                        $"SELECT * FROM OPENQUERY([WMS_ORACLE], 'SELECT * FROM STK511TRN.CR_TEMPQA WHERE LIVREA = {livrea} AND TO_CHAR(DATCRE, ''YYYYMMDD'') = {dateTime.Value.Year}{dateTime.Value.Month.ToString("00")}{dateTime.Value.Day.ToString("00")} AND (BLOCK IS NULL OR BLOCK <> 1) ')").ToList();
+                        break;
+                }
 
                 foreach (CrTemp crTemp in crTemps)
                 {

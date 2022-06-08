@@ -7,6 +7,6 @@ namespace DataAccessLayer.Repositories.Interfaces
     public interface ICrTempqaRepository
     {
         public Task<CrTempqaResponse> getTemp(string livrea);
-        public Task<CrTempqaResponse> getTempForPeriod(string livrea, DateTime? dateTime);
+        public Task<CrTempqaResponse> getTempForPeriod(string livrea, DateTime? dateTime, string statusBlock);
     }
 }
